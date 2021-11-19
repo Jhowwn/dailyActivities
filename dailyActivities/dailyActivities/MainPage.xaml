@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:Views="clr-namespace:dailyActivities.Views"
+       x:Class="dailyActivities.MainPage">
+
+    <TabBar>
+        <Tab Title="Nova Atividade" Route="CadastroAtividade">
+            <ShellContent>
+                <Views:CadastroAtividade Title="Cadastro de Atividades" />
+            </ShellContent>
+        </Tab>
+        <Tab Title="Minhas Atividades" Route="MinhasAtividades">
+            <ShellContent>
+                <Views:CadastroAtividade Title="Minhas Atividades" />
+            </ShellContent>
+        </Tab>
+        <Tab Title="Sobre">
+            <ShellContent>
+                <Views:CadastroAtividade Title="Sobre o APP" />
+            </ShellContent>
+        </Tab>
+    </TabBar>
+
+
+</Shell>
