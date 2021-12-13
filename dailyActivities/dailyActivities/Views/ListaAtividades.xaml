@@ -1,12 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="dailyActivities.Views.ListaAtividades">
+             x:Class="dailyActivities.Views.ListaAtividades"
+             x:Name="Pagina"
+             BackgroundColor="#2f2f30">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Atualizar" Order="Primary" Command="{Binding AtualizarLista}" />
+
+        <ToolbarItem Text="Salvar"
+                     Order="Primary"
+                     Command="{Binding SalvarAtividade}"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout Orientation="Horizontal">
+                <SearchBar Placeholder="Busque Por Descrição" Text="{Binding ParametroBusca}" />
+                <Button Text="Buscar" Command="{Binding Buscar}" />
+            </StackLayout>
+
+            <RefreshView IsRefreshing="{Binding EstaAtualizado, Mode=OneWay}"
+                           Command="{Binding AtualizarLista}"/>
+            <ListView ItemsSource="{Binding ListaAtividades}">
+                <ListView.Header>
+                    <Grid RowDefinitions="Auto"
+                          ColumnDefinitions="*,*,*">
+                        <Label Grid.Row="0" Grid.Column="0" Text="Id" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="Descrição" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="Data" />
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Detalhes"
+                                          Command="{Binding Source={x:Reference Pagina},
+                                                    Path=BindingContext.AbrirDetalhesAtividade}"
+                                          CommandParameter="{Binding Id}" />
+                                <MenuItem Text="Excluir"
+                                          Command="{Binding Source={x:Reference Pagina},
+                                                    Path=BindingContext.Remover}"
+                                          CommandParameter="{Binding Id}"
+                                          />
+                            </ViewCell.ContextActions>
+                            <Grid RowDefinitions="Auto"
+                                  ColumnDefinitions="*,*,*">
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Id}" TextColor="Black"/>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Descricao}" TextColor="Black"/>
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Data, StringFormat='{}{0:dd/MM/yyyy}}'}" TextColor="Black"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using dailyActivities.ViewModels;
 
 namespace dailyActivities.Views
 {
@@ -14,7 +14,14 @@ namespace dailyActivities.Views
     {
         public ListaAtividades()
         {
+            BindingContext = new ListaAtividadesViewModel();
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            var vm = (ListaAtividadesViewModel)BindingContext;
+            vm.AtualizarLista.Execute(null);
         }
     }
 }

@@ -1,11 +1,29 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using dailyActivities.Helpers;
+using System.IO;
 
 namespace dailyActivities
 {
     public partial class App : Application
     {
+        static SQLiteDataBaseHelper database;
+
+        public static SQLiteDataBaseHelper Database
+        {
+            get
+            {
+                if(database == null)
+                {
+                    database = new SQLiteDataBaseHelper(Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                        "DailyActivity.db3"));
+                }
+                return database;
+            }
+        }
+
         public App()
         {
             InitializeComponent();
