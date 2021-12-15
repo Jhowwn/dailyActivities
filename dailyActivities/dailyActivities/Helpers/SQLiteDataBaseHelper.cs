@@ -20,7 +20,7 @@ namespace dailyActivities.Helpers
         public Task<List<Atividade>> GetAllRows()
         {
             return _db.Table<Atividade>().OrderByDescending(i => i.Id).ToListAsync();
-        }
+           }
 
         public Task<Atividade> GetById(int id)
         {

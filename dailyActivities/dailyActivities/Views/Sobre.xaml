@@ -3,10 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="dailyActivities.Views.Sobre">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="10">
+            <Label Text="Desenvolvido por:"
+                   TextColor="Black"
+                   FontSize="25"/>
+            <Label Text="Jhonatan de Sousa Lara"
+                   TextColor="Black"
+                   FontSize="20"/>
+            <Label Text="Evelyn Helena Soares dos Santos"
+                   TextColor="Black"
+                   FontSize="20"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

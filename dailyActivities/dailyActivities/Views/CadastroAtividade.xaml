@@ -18,7 +18,7 @@
             <Entry Text="{Binding Descricao}" 
                    Placeholder="Como foi sua Atividade?" 
                    TextColor="Black"
-                   PlaceholderColor="Black"/>
+                   PlaceholderColor="#888"/>
             
             <Label Text="Data:" TextColor="Black"/>
             
@@ -30,14 +30,14 @@
                    Keyboard="Numeric" 
                    Placeholder="Quanto você estava pesando?" 
                    TextColor="Black"
-                   PlaceholderColor="Black"/>
+                   PlaceholderColor="#888"/>
             
             <Label Text="Observações:" TextColor="Black"/>
             
             <Entry Text="{Binding Observacoes}" 
                    Placeholder="Algo para lembrar mais tarde?" 
                    TextColor="Black"
-                   PlaceholderColor="Black"/>
+                   PlaceholderColor="#888"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

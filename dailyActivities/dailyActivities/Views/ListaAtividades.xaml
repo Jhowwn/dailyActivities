@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="dailyActivities.Views.ListaAtividades"
-             x:Name="Pagina"
-             BackgroundColor="#2f2f30">
+             x:Name="Pagina">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Atualizar" Order="Primary" Command="{Binding AtualizarLista}" />
@@ -15,46 +14,49 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <SearchBar Placeholder="Busque Por Descrição" Text="{Binding ParametroBusca}" />
-                <Button Text="Buscar" Command="{Binding Buscar}" />
+            <StackLayout Padding="5">
+                <SearchBar Placeholder="Busque Por Descrição" Text="{Binding ParametroBusca}"/>
+                <Button Text="Buscar" Command="{Binding Buscar}"/>
             </StackLayout>
 
             <RefreshView IsRefreshing="{Binding EstaAtualizado, Mode=OneWay}"
                            Command="{Binding AtualizarLista}"/>
-            <ListView ItemsSource="{Binding ListaAtividades}">
-                <ListView.Header>
-                    <Grid RowDefinitions="Auto"
+            
+            <StackLayout Padding="9">
+                <ListView ItemsSource="{Binding ListaAtividades}">
+                    <ListView.Header>
+                        <Grid RowDefinitions="Auto"
                           ColumnDefinitions="*,*,*">
-                        <Label Grid.Row="0" Grid.Column="0" Text="Id" />
-                        <Label Grid.Row="0" Grid.Column="1" Text="Descrição" />
-                        <Label Grid.Row="0" Grid.Column="2" Text="Data" />
-                    </Grid>
-                </ListView.Header>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem Text="Detalhes"
+                            <Label Grid.Row="0" Grid.Column="0" Text="Id" TextColor="Black"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="Descrição" TextColor="Black" />
+                            <Label Grid.Row="0" Grid.Column="2" Text="Data" TextColor="Black" />
+                        </Grid>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Detalhes"
                                           Command="{Binding Source={x:Reference Pagina},
                                                     Path=BindingContext.AbrirDetalhesAtividade}"
                                           CommandParameter="{Binding Id}" />
-                                <MenuItem Text="Excluir"
+                                    <MenuItem Text="Excluir"
                                           Command="{Binding Source={x:Reference Pagina},
                                                     Path=BindingContext.Remover}"
                                           CommandParameter="{Binding Id}"
                                           />
-                            </ViewCell.ContextActions>
-                            <Grid RowDefinitions="Auto"
+                                </ViewCell.ContextActions>
+                                <Grid RowDefinitions="Auto"
                                   ColumnDefinitions="*,*,*">
-                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Id}" TextColor="Black"/>
-                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Descricao}" TextColor="Black"/>
-                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Data, StringFormat='{}{0:dd/MM/yyyy}}'}" TextColor="Black"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Id}" TextColor="Black"/>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Descricao}" TextColor="Black"/>
+                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding Data, StringFormat='{}{0:dd/MM/yyyy}}'}" TextColor="Black"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
